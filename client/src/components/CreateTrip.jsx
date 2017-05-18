@@ -35,6 +35,12 @@ class CreateTrip extends React.Component {
     this.onAddTripClick = this.onAddTripClick.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.insertYelpActivityToForm = this.insertYelpActivityToForm.bind(this);
+  }
+  //Function to be passed to yelp search so that clicking one of the items from the search will autofill the activity form with said activity and description/
+  //link with the url
+  insertYelpActivityToForm(activity, url) {
+    this.setState({activityPlaceholder: activity, descriptionPlaceholder: url});
   }
   // Toggle InviteFriends modal
   toggleModal(e) {
@@ -133,7 +139,7 @@ class CreateTrip extends React.Component {
         <InviteFriends show = {this.state.isInviteFriendModalOpen} onClose = {this.toggleModal} onAddTripClick = {this.onAddTripClick} onClose={this.toggleModal} updateCurrentTrip = {this.props.updateCurrentTrip} >
           <h3>Invite friends to your trip</h3>
         </InviteFriends>
-        <YelpSearch/>
+        <YelpSearch insertYelpActivityToForm={this.insertYelpActivityToForm}/>
       </div>
     )
   }
