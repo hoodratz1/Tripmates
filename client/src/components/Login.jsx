@@ -85,7 +85,7 @@ checkLoginState() {
       var user = {username: response.name,
               password: '1234'}
       var userInfo = this.state.userInfo;
-      userInfo.name = response.name;
+      userInfo.username = response.name;
       this.setState({userInfo})
       this.submitLogin(user);
     //  (e)=>{this.submitSignup(user, e)};

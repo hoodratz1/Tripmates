@@ -193,6 +193,12 @@ nav li {
   font-weight: bold;
 }
 
+/************************* SIGN UP / LOGIN ******************/
+
+.fbLogo {
+  width: 8vw;
+  height: 10vh;
+}
 
 /************************* HOMEPAGE *************************/
 
