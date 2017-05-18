@@ -40,7 +40,7 @@ class CreateTrip extends React.Component {
   //Function to be passed to yelp search so that clicking one of the items from the search will autofill the activity form with said activity and description/
   //link with the url
   insertYelpActivityToForm(activity, url) {
-    this.setState({activityPlaceholder: activity, descriptionPlaceholder: url});
+    this.setState({activityPlaceholder: activity, descriptionPlaceholder: url, activityName: activity, activityDescription: url});
   }
   // Toggle InviteFriends modal
   toggleModal(e) {
