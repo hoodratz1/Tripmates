@@ -64,7 +64,7 @@ class YelpSearch extends React.Component {
           <div className="yelpResults">
             { yelpResults ? yelpResults.map((entry, index) => {
                 return (<div key={index} id="yelpResultItem">
-                  <div id="pic_container">
+                  <div onClick={e=> this.props.insertYelpActivityToForm(entry.name, entry.url)} id="pic_container">
                     <img src={entry.image_url} />
                   </div>
                   <div>{entry.name}</div>
