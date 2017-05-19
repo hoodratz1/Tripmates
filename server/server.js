@@ -45,7 +45,7 @@ app.post('/login', function (req, res) {
   if(sess.email) return res.send(sess.email);
   var username = req.body.username;
   var password = req.body.password;
-  sess.email = req.body.username;
+  // sess.email = req.body.username;
 
   // If entered username or password is blank, send back 'false'
   if(!username || !password) {
@@ -65,6 +65,7 @@ app.post('/login', function (req, res) {
             console.error(error)
           }
           bcrypt.compare(password, encryptedPassword[0].password).then(function(match) {
+            match ? sess.email = username : null;
             return res.send(match);
           })
           .catch(function (error) {
@@ -330,7 +331,12 @@ app.post('/addActivityVote', function(req,res) {
 
 // Returns YelpFusionAPI listings based on search term and location (used in YelpGallery, YelpSearch components)
 app.get('/yelp', function (req, res) {
-  const resultArray = [];
+  sess = req.session;
+  sess.yelpAPIAccessCount = sess.yelpAPIAccessCount + 1 || 1;
+  var resultArray = [];
+  var tooManyQueriesResponse = [{name: 'too many API queries you have been blocked', url: 'dont be steve', rating: 0, image_url: 'https://lh3.googleusercontent.com/c1GhYAOyShSA2fkrUMLRKyug1VBXZmSmUY6-Bfp_hYnBCw3vEaawn8TWlujle3cEdmi1f0H6WhBkMo-yu_qJbVWfsC7RFmYhrPuYhyz8Fq6a_JQBh3yybhYi7HlH77ENzGojDEGKXIm9UPXnB79Dj49GFcDPvIFHXm_zCf7g8N_EGS1RAZk4fPCE72Og_mPFOV3bQft_Ep3fUrma6q8wtw1yOvfK93VYVx5YzUT5NJdFF-wr9NzAh9BcHD_gbLlZynxFO9TW37qiCxA52UTp4Pcnwhb1VNZBvoNXsms2DsOQvXsIsvNosmeGP8GYcXCggNdI3WcJWhSNBRDtEsclFWgEphB9_be3JZfVWpRB45BauBd9Ca6EnAwIIl5bKVUdc0JL8Jwkl6XN4-YPyZZ-bKP42hWIwKRP6rMxGbkvUv8pXdNw6N3vKk6vem72A-SQ0oWLaZMsU6MICmcFN_VhRiXO_Oy_Ovj-DiONmqZHs95QepGx5rh-cieVmgD_LiHErXYynMdgCy4P0ACcawndUboRJlEu5lFmxj_x6hnFod4Pr5_9DobS4HTVp2ZefGjEgKn13ksU=w2880-h1652'}] 
+  if(sess.yelpAPIAccessCount === 5 ) return res.end(JSON.stringify({tooManyQueriesResponse}));
+  
   yelp.accessToken(yelpAPI.clientId, yelpAPI.clientSecret).then(response => {
     const client = yelp.client(response.jsonBody.access_token);
 
@@ -344,6 +350,7 @@ app.get('/yelp', function (req, res) {
         currentResult = response.jsonBody.businesses[i];
         resultArray.push(currentResult);
       }
+      // console.log(resultArray);
       res.send({resultArray});
     })
   }).catch((e) => {

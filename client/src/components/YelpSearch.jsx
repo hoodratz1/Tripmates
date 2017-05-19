@@ -27,7 +27,8 @@ class YelpSearch extends React.Component {
     })
       .then((response) => {
         var yelpResults = this.state.yelpResults;
-        yelpResults['entries'] = response.data.resultArray;
+        yelpResults['entries'] = response.data.resultArray || response.data.tooManyQueriesResponse;
+        console.log(yelpResults);
         this.setState({ yelpResults });
       })
       .catch(err => {
