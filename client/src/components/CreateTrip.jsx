@@ -115,7 +115,6 @@ class CreateTrip extends React.Component {
               {this.state.dates.map((date,index) => {
                 return(<div key={index}><li className="dateItem">{date}</li></div>)})}
 
-              <input name="dateRange" placeholder="mm/dd/yyyy - mm/dd/yyyy" value={this.state.datePlaceholder} type ="text" onChange={e => this.setState({datePlaceholder: e.target.value})}　readOnly/>
               <Calendar callbackParent = {this.setCalendarPlaceholder}/>
           <button id="secondary" onClick={this.onDateSubmission}>+</button>
             </div>
