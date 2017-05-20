@@ -109,13 +109,13 @@ app.get('/profile', function (req, res) {
   var userData = {};
   var tripArray = [];
 
-    var currentUserIDQuery = `SELECT id FROM users WHERE username = '${req.query.loggedInUser}'`;
+    var currentUserIDQuery = 'SELECT id FROM users WHERE username = ' + db.dbConnection.escape(req.query.loggedInUser);
     db.dbConnection.query(currentUserIDQuery, function(error, currentUser, fields) {
       if(error) {
         console.log(error)
       }
 
-      var tripsQuery = `SELECT tripName FROM trips INNER JOIN user_trips ON trips.id = user_trips.trip_id WHERE user_id = '${currentUser[0].id}'`;
+      var tripsQuery = 'SELECT tripName FROM trips INNER JOIN user_trips ON trips.id = user_trips.trip_id WHERE user_id = '+ db.dbConnection.escape(currentUser[0].id);
       db.dbConnection.query(tripsQuery, function (error, tripList, fields) {
         if (tripList[0]) {
           for (var i = 0; i < tripList.length; i++) {
@@ -137,13 +137,14 @@ app.post('/tripInfo', function(req, res) {
       console.log(error)
     }
 
-    var insertTripQuery = `INSERT INTO trips (tripName, destination, est_cost) VALUES ('${req.body.tripName}', '${req.body.destination}', '${req.body.estCost}')`;
+    var insertTripQuery = 'INSERT INTO trips (tripName, destination, est_cost) VALUES (' + db.dbConnection.escape(req.body.tripName) + ', ' + db.dbConnection.escape(req.body.destination) + ', ' + db.dbConnection.escape(req.body.estCost) + ')';
+
     db.dbConnection.query(insertTripQuery, function(error, result, fields) {
       if(error) {
         console.error(error)
       }
 
-      var tripIDQuery = `SELECT id FROM trips WHERE tripName = '${req.body.tripName}'`;
+      var tripIDQuery = 'SELECT id FROM trips WHERE tripName = '+ db.dbConnection.escape(req.body.tripName);
       db.dbConnection.query(tripIDQuery, function(error, tripID, fields) {
         if(error) {
           console.error(error)
