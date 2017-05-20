@@ -481,6 +481,12 @@ button#activityVoteButton{
   color: #6a6a6a;
 }
 
+button.translate {
+    background: transparent;
+    color: black;
+    border: transparent;
+}
+
 
 .react-datepicker__tether-element-attached-top .react-datepicker__triangle, .react-datepicker__tether-element-attached-bottom .react-datepicker__triangle, .react-datepicker__year-read-view--down-arrow,
 .react-datepicker__month-read-view--down-arrow {
