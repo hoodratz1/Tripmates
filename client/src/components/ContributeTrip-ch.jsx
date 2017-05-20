@@ -139,7 +139,7 @@ class ContributeTripCh extends React.Component {
   render() {
     return (
       <div id="contributeTrip">
-        <Header loggedInUser = {this.props.loggedInUser} />
+        <HeaderCh loggedInUser = {this.props.loggedInUser} />
         <div className="container">
           <div className="content narrow">
             <h2 id="pageheader">貢獻給 {'  "' + this.props.currentTrip + '"'} </h2>
@@ -191,7 +191,7 @@ class ContributeTripCh extends React.Component {
             </div>
           </div>
         </div>
-        <YelpSearch/>
+        <YelpSearchCh/>
       </div>
     )
   }
