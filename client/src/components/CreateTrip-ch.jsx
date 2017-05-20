@@ -117,8 +117,7 @@ class CreateTripCh extends React.Component {
               {this.state.dates.map((date,index) => {
                 return(<div key={index}><li className="dateItem">{date}</li></div>)})}
 
-              <input name="dateRange" placeholder="mm/dd/yyyy - mm/dd/yyyy" value={this.state.datePlaceholder} type ="text" onChange={e => this.setState({datePlaceholder: e.target.value})}/>
-              <Calendar callbackParent = {this.setCalendarPlaceholder}/>
+              <input name="dateRange" placeholder="mm/dd/yyyy - mm/dd/yyyy" value={this.state.datePlaceholder} type ="text" onChange={e => this.setState({datePlaceholder: e.target.value})}　readOnly/>
           <button id="secondary" onClick={this.onDateSubmission}>+</button>
             </div>
             <div className="column2">

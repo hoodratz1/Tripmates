@@ -2,16 +2,16 @@ import React from 'react';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 
-import HeaderCh from './Header-ch';
-import YelpSearchCh from './YelpSearch-ch';
+import HeaderJp from './Header-jp';
+import YelpSearchJp from './YelpSearch-jp';
 
 
-class ContributeTripCh extends React.Component {
+class ContributeTripJp extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-    	tripInfo: '',
+    　tripInfo: '',
       dates: [],
       activities: [],
       activityName: '',
@@ -139,62 +139,62 @@ class ContributeTripCh extends React.Component {
   render() {
     return (
       <div id="contributeTrip">
-        <HeaderCh loggedInUser = {this.props.loggedInUser} />
+        <HeaderJp loggedInUser = {this.props.loggedInUser} />
         <div className="container">
           <div className="content narrow">
-            <h2 id="pageheader">貢獻給 {'  "' + this.props.currentTrip + '"'} </h2>
+            <h2 id="pageheader">{'  "' + this.props.currentTrip + '"'}に寄付する </h2>
 
             <div className="column1">
               <div className="tripItem">
-                <h3>地點</h3><label>{this.state.tripInfo.destination}</label>
+                <h3>目的地</h3><label>{this.state.tripInfo.destination}</label>
               </div>
               <div className="tripItem">
-                <h3>價錢</h3> <label>${this.state.tripInfo.est_cost}</label>
+                <h3>値段</h3> <label>${this.state.tripInfo.est_cost}</label>
               </div>
               <div className="tripItem">
-                <h3>時間</h3>
+                <h3>期間</h3>
                 {this.state.dates.map((date,index) => (<div key={index}><li className="dateItem">{date.dateOption + ' '}
-                <button id="voteButton" onClick={this.dateVoteClick.bind(this, date)}>投票</button>
-                <span>票: {date.votes}</span> </li></div> ))}
+                <button id="voteButton" onClick={this.dateVoteClick.bind(this, date)}>投票する</button>
+                <span>投票: {date.votes}</span> </li></div> ))}
               </div>
               <div className="tripItem">
-                <h3>意見</h3>
+                <h3>コメント</h3>
                 {this.state.comments.map((comment,index) => (<div key={index}><div className="commentItem">{comment.comment} - {comment.username}</div></div>))}
 
-                <textarea onChange={(e) => this.setState({comment: e.target.value})} placeholder="加意見"></textarea>
-                <button id="secondary" onClick={this.onCommentSubmission}>提交</button>
+                <textarea onChange={(e) => this.setState({comment: e.target.value})} placeholder="Add a comment"></textarea>
+                <button id="secondary" onClick={this.onCommentSubmission}>入力</button>
               </div>
             </div>
 
             <div className="column2">
               <div className="tripItem">
-                <h3>活動意見</h3>
+                <h3>アクティビティ</h3>
                 {this.state.activities.map((activity,index) => (
                   <div key={index} id='activityList'>
                     <div className="activityGroup">
-                      <li><span>活動:</span> {activity.activityName} </li>
-                      <li><span>活動內容:</span> {activity.activityDescription} </li>
-                      <li><span>價錢:</span> ${activity.est_cost} </li>
-                      <button id="activityVoteButton" onClick={this.activityOptionsClick.bind(this, activity)}>投票</button>
-                      <span>票: </span> {activity.vote_count}
+                      <li><span>アクティビティ:</span> {activity.activityName} </li>
+                      <li><span>内容:</span> {activity.activityDescription} </li>
+                      <li><span>値段:</span> ${activity.est_cost} </li>
+                      <button id="activityVoteButton" onClick={this.activityOptionsClick.bind(this, activity)}>投票する</button>
+                      <span>投票: </span> {activity.vote_count}
                     </div>
                   </div>))
                 }
 
-                <h4>加活動</h4>
-                <input name="activity" type ="text" placeholder="活動" onChange={e => this.setState({activityName: e.target.value})}/>
-                <input name="activity" type ="text" placeholder="活動內容" onChange={e => this.setState({activityDescription: e.target.value})}/>
-                <input name="activity" type ="text" placeholder="價錢" onChange={e => this.setState({activityCost: e.target.value})}/>
+                <h4>アクティビティを入れる</h4>
+                <input name="activity" type ="text" placeholder="アクティビティ" onChange={e => this.setState({activityName: e.target.value})}/>
+                <input name="activity" type ="text" placeholder="内容" onChange={e => this.setState({activityDescription: e.target.value})}/>
+                <input name="activity" type ="text" placeholder="値段" onChange={e => this.setState({activityCost: e.target.value})}/>
 
                 <button id="activitybtn" onClick={this.onActivityClick}>+</button>
               </div>
             </div>
           </div>
         </div>
-        <YelpSearchCh/>
+        <YelpSearchJp/>
       </div>
     )
   }
 }
 
-export default ContributeTripCh;
+export default ContributeTripJp;

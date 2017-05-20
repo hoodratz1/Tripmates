@@ -1,15 +1,15 @@
 import React from 'react';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
-import Header from './Header';
-import InviteFriends from './InviteFriends';
-import YelpSearch from './YelpSearch';
+import HeaderJp from './Header-jp';
+import InviteFriendsJp from './InviteFriends-jp';
+import YelpSearchJp from './YelpSearch-jp';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 // import '../../../node_modules/react-datepicker/dist/react-datepicker.css';
 import Calendar from './Calendar';
 
-class CreateTrip extends React.Component {
+class CreateTripJp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -101,17 +101,19 @@ class CreateTrip extends React.Component {
   render() {
     return (
       <div id="createTrip">
-        <Header loggedInUser = {this.props.loggedInUser} />
+        <HeaderJp loggedInUser = {this.props.loggedInUser} />
         <div className="container">
           <div className="content narrow">
             <form>
-            <h2 id="pageheader">Create a Trip</h2>
+            <h2 id="pageheader">旅行を作ろう</h2>
             <div className="column1">
-              <label>Trip Name</label>
+              <label>旅の名前</label>
               <input name="tripName" type="text" onChange={e => this.setState({tripName: e.target.value})}/>
-              <label>Destination</label>
+              <br/><br/><br/><br/>
+              <label>目的地</label>
               <input name="tripName" type="text" onChange={e => this.setState({destination: e.target.value})} />
-              <label>Date Range Options</label>
+              <br/><br/><br/><br/>
+              <label>期間</label>
               {this.state.dates.map((date,index) => {
                 return(<div key={index}><li className="dateItem">{date}</li></div>)})}
 
@@ -120,34 +122,36 @@ class CreateTrip extends React.Component {
           <button id="secondary" onClick={this.onDateSubmission}>+</button>
             </div>
             <div className="column2">
-              <label>Estimated Cost</label>
+              <label>予想の値段</label>
               <input name="estimatedCost" type="text" placeholder="$" onChange={e => this.setState({estCost: e.target.value})}/>
               {this.state.activities.map ((activity,index) =>
                 (<div key={index} id='activityList'>
                   <div className="activityGroup">
-                    <li><span>Activity:</span> {activity.activityName} </li>
-                    <li><span>Description:</span> {activity.activityDescription} </li>
-                    <li><span>Cost:</span> ${activity.activityCost} </li>
+                    <br/><br/><br/><br/>
+                    <li><span>アクティビティ:</span> {activity.activityName} </li>
+                    <li><span>内容:</span> {activity.activityDescription} </li>
+                    <li><span>値段:</span> ${activity.activityCost} </li>
                   </div>
                 </div>
               ))}
-              <label>Activity Ideas</label>
-              <input name="activity" type ="text" placeholder="Activity" value={this.state.activityPlaceholder} onChange={e => this.setState({activityName: e.target.value, activityPlaceholder: e.target.value})}/>
-              <input name="activity" type ="text" placeholder="Description/Link" value={this.state.descriptionPlaceholder} onChange={e => this.setState({activityDescription: e.target.value, descriptionPlaceholder: e.target.value})}/>
-              <input name="activity" type ="text" placeholder="Cost" value={this.state.costPlaceholder} onChange={e => this.setState({activityCost: e.target.value, costPlaceholder: e.target.value})}/>
+              <br/><br/><br/><br/>
+              <label>アクティビティ</label>
+              <input name="activity" type ="text" placeholder="アクティビティ" value={this.state.activityPlaceholder} onChange={e => this.setState({activityName: e.target.value, activityPlaceholder: e.target.value})}/>
+              <input name="activity" type ="text" placeholder="内容" value={this.state.descriptionPlaceholder} onChange={e => this.setState({activityDescription: e.target.value, descriptionPlaceholder: e.target.value})}/>
+              <input name="activity" type ="text" placeholder="値段" value={this.state.costPlaceholder} onChange={e => this.setState({activityCost: e.target.value, costPlaceholder: e.target.value})}/>
               <button id="secondary" onClick={this.onActivityClick}>+</button>
             </div>
-            <button id="primary" onClick={this.toggleModal}>Next</button>
+            <button id="primary" onClick={this.toggleModal}>次へ</button>
           </form>
-          {this.state.showReqFields ? (<p className="errorMsg">Trip name is required</p>) : null }
+          {this.state.showReqFields ? (<p className="errorMsg">旅行の名前を入れてません。</p>) : null }
           </div>
         </div>
-        <InviteFriends show = {this.state.isInviteFriendModalOpen} onClose = {this.toggleModal} onAddTripClick = {this.onAddTripClick} onClose={this.toggleModal} updateCurrentTrip = {this.props.updateCurrentTrip} >
-          <h3>Invite friends to your trip</h3>
-        </InviteFriends>
-        <YelpSearch insertYelpActivityToForm={this.insertYelpActivityToForm}/>
+        <InviteFriendsJp show = {this.state.isInviteFriendModalOpen} onClose = {this.toggleModal} onAddTripClick = {this.onAddTripClick} onClose={this.toggleModal} updateCurrentTrip = {this.props.updateCurrentTrip} >
+          <h3>シェアする</h3>
+        </InviteFriendsJp>
+        <YelpSearchJp insertYelpActivityToForm={this.insertYelpActivityToForm}/>
       </div>
     )
   }
 }
-export default CreateTrip;
+export default CreateTripJp;
