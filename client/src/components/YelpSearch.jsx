@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
+import $ from 'jquery';
 
 // [TO DO: Might be able to refactor with YelpGallery to reuse more code]
 class YelpSearch extends React.Component {
@@ -65,7 +66,7 @@ class YelpSearch extends React.Component {
           <div className="yelpResults">
             { yelpResults ? yelpResults.map((entry, index) => {
                 return (<div key={index} id="yelpResultItem">
-                  <div onClick={e=> this.props.insertYelpActivityToForm(entry.name, entry.url)} id="pic_container">
+                  <div onClick={(e)=> {this.props.insertYelpActivityToForm(entry.name, entry.url);  $(window).scrollTop(0);}} id="pic_container">
                     <img src={entry.image_url} />
                   </div>
                   <div>{entry.name}</div>
