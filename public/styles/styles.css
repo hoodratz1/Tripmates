@@ -455,6 +455,7 @@ button#activityVoteButton{
 }
 
 #yelpResultItem {
+  cursor: pointer;
   margin: 20px 30px 40px 0;
   display: inline-block;
   width: 280px;
