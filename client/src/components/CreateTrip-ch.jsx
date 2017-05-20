@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
-import Header from './Header-ch';
+import HeaderCh from './Header-ch';
 import InviteFriendsCh from './InviteFriends-ch';
 import YelpSearchCh from './YelpSearch-ch';
 import DatePicker from 'react-datepicker';
