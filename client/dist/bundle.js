@@ -27614,6 +27614,26 @@ var _ContributeTrip = __webpack_require__(242);
 
 var _ContributeTrip2 = _interopRequireDefault(_ContributeTrip);
 
+var _HomeCh = __webpack_require__(390);
+
+var _HomeCh2 = _interopRequireDefault(_HomeCh);
+
+var _SignupCh = __webpack_require__(394);
+
+var _SignupCh2 = _interopRequireDefault(_SignupCh);
+
+var _LoginCh = __webpack_require__(392);
+
+var _LoginCh2 = _interopRequireDefault(_LoginCh);
+
+var _ProfileCh = __webpack_require__(393);
+
+var _ProfileCh2 = _interopRequireDefault(_ProfileCh);
+
+var _CreateTripCh = __webpack_require__(389);
+
+var _CreateTripCh2 = _interopRequireDefault(_CreateTripCh);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -27632,10 +27652,13 @@ var App = function (_React$Component) {
 
     _this.state = {
       loggedInUser: '',
-      currentTrip: ''
+      currentTrip: '',
+      chinese: false
     };
     _this.checkUser = _this.checkUser.bind(_this);
     _this.updateCurrentTrip = _this.updateCurrentTrip.bind(_this);
+    _this.translateChinese = _this.translateChinese.bind(_this);
+    _this.translateEnglish = _this.translateEnglish.bind(_this);
     return _this;
   }
 
@@ -27655,10 +27678,32 @@ var App = function (_React$Component) {
       });
     }
   }, {
+    key: 'translateChinese',
+    value: function translateChinese() {
+      this.setState({
+        chinese: true
+      });
+      console.log('translateChinese was clicked');
+    }
+  }, {
+    key: 'translateEnglish',
+    value: function translateEnglish() {
+      this.setState({
+        chinese: false
+      });
+      console.log('translateEnglish was clicked');
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
+      if (this.state.chinese) {
+        console.log('this page should be in chinese');
+      }
+      if (!this.state.chinese) {
+        console.log('this page should be in english');
+      }
       return _react2.default.createElement(
         'div',
         null,
@@ -27668,24 +27713,59 @@ var App = function (_React$Component) {
           _react2.default.createElement(
             'div',
             null,
-            _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render(props) {
-                return _react2.default.createElement(_Home2.default, _extends({ loggedInUser: _this2.state.loggedInUser, checkUser: _this2.checkUser }, props));
-              } }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/signup', render: function render(props) {
-                return _react2.default.createElement(_Signup2.default, _extends({ checkUser: _this2.checkUser, loggedInUser: _this2.state.loggedInUser }, props));
-              } }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/login', render: function render(props) {
-                return _react2.default.createElement(_Login2.default, _extends({ checkUser: _this2.checkUser, loggedInUser: _this2.state.loggedInUser }, props));
-              } }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/profile', render: function render(props) {
-                return _react2.default.createElement(_Profile2.default, _extends({ loggedInUser: _this2.state.loggedInUser, updateCurrentTrip: _this2.updateCurrentTrip, currentTrip: _this2.state.currentTrip }, props));
-              } }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/createTrip', render: function render(props) {
-                return !_this2.state.loggedInUser ? _react2.default.createElement(_reactRouterDom.Redirect, { to: '/login' }) : _react2.default.createElement(_CreateTrip2.default, _extends({ loggedInUser: _this2.state.loggedInUser }, props));
-              } }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/contributeTrip', render: function render(props) {
-                return !_this2.state.loggedInUser ? _react2.default.createElement(_reactRouterDom.Redirect, { to: '/login' }) : _react2.default.createElement(_ContributeTrip2.default, _extends({ loggedInUser: _this2.state.loggedInUser, currentTrip: _this2.state.currentTrip }, props));
-              } })
+            _react2.default.createElement(
+              'button',
+              { className: 'translate', onClick: this.translateChinese },
+              '\u4E2D\u6587'
+            ),
+            _react2.default.createElement(
+              'button',
+              { className: 'translate', onClick: this.translateEnglish },
+              'English'
+            ),
+            this.state.chinese ? _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render(props) {
+                  return _react2.default.createElement(_HomeCh2.default, _extends({ loggedInUser: _this2.state.loggedInUser, checkUser: _this2.checkUser }, props));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/signup', render: function render(props) {
+                  return _react2.default.createElement(_SignupCh2.default, _extends({ checkUser: _this2.checkUser, loggedInUser: _this2.state.loggedInUser }, props));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/login', render: function render(props) {
+                  return _react2.default.createElement(_LoginCh2.default, _extends({ checkUser: _this2.checkUser, loggedInUser: _this2.state.loggedInUser }, props));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/profile', render: function render(props) {
+                  return _react2.default.createElement(_ProfileCh2.default, _extends({ loggedInUser: _this2.state.loggedInUser, updateCurrentTrip: _this2.updateCurrentTrip, currentTrip: _this2.state.currentTrip }, props));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/createTrip', render: function render(props) {
+                  return !_this2.state.loggedInUser ? _react2.default.createElement(_reactRouterDom.Redirect, { to: '/login' }) : _react2.default.createElement(_CreateTripCh2.default, _extends({ loggedInUser: _this2.state.loggedInUser }, props));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/contributeTrip', render: function render(props) {
+                  return !_this2.state.loggedInUser ? _react2.default.createElement(_reactRouterDom.Redirect, { to: '/login' }) : _react2.default.createElement(_ContributeTrip2.default, _extends({ loggedInUser: _this2.state.loggedInUser, currentTrip: _this2.state.currentTrip }, props));
+                } })
+            ) : _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', render: function render(props) {
+                  return _react2.default.createElement(_Home2.default, _extends({ loggedInUser: _this2.state.loggedInUser, checkUser: _this2.checkUser }, props));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/signup', render: function render(props) {
+                  return _react2.default.createElement(_Signup2.default, _extends({ checkUser: _this2.checkUser, loggedInUser: _this2.state.loggedInUser }, props));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/login', render: function render(props) {
+                  return _react2.default.createElement(_Login2.default, _extends({ checkUser: _this2.checkUser, loggedInUser: _this2.state.loggedInUser }, props));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/profile', render: function render(props) {
+                  return _react2.default.createElement(_Profile2.default, _extends({ loggedInUser: _this2.state.loggedInUser, updateCurrentTrip: _this2.updateCurrentTrip, currentTrip: _this2.state.currentTrip }, props));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/createTrip', render: function render(props) {
+                  return !_this2.state.loggedInUser ? _react2.default.createElement(_reactRouterDom.Redirect, { to: '/login' }) : _react2.default.createElement(_CreateTrip2.default, _extends({ loggedInUser: _this2.state.loggedInUser }, props));
+                } }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/contributeTrip', render: function render(props) {
+                  return !_this2.state.loggedInUser ? _react2.default.createElement(_reactRouterDom.Redirect, { to: '/login' }) : _react2.default.createElement(_ContributeTrip2.default, _extends({ loggedInUser: _this2.state.loggedInUser, currentTrip: _this2.state.currentTrip }, props));
+                } })
+            )
           )
         )
       );
@@ -58454,6 +58534,1699 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
+
+/***/ }),
+/* 387 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(10);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var HeaderCh = function (_React$Component) {
+  _inherits(HeaderCh, _React$Component);
+
+  function HeaderCh(props) {
+    _classCallCheck(this, HeaderCh);
+
+    return _possibleConstructorReturn(this, (HeaderCh.__proto__ || Object.getPrototypeOf(HeaderCh)).call(this, props));
+  }
+
+  _createClass(HeaderCh, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { id: 'header_container' },
+        _react2.default.createElement(
+          'div',
+          { id: 'header_wrapper' },
+          _react2.default.createElement(
+            'div',
+            { id: 'logo' },
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/' },
+              _react2.default.createElement(
+                'h1',
+                null,
+                'Tripmates'
+              )
+            )
+          ),
+          this.props.loggedInUser ? _react2.default.createElement(
+            'nav',
+            null,
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'a',
+                { href: '/logout' },
+                '\u767B\u51FA'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/profile' },
+                '\u6A94\u6848'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              '\u4F60\u597D ',
+              this.props.loggedInUser,
+              '!'
+            )
+          ) : _react2.default.createElement(
+            'nav',
+            null,
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/login' },
+                '\u767B\u5165'
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                _reactRouterDom.Link,
+                { to: '/signup' },
+                '\u8A3B\u518A'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return HeaderCh;
+}(_react2.default.Component);
+
+exports.default = HeaderCh;
+
+/***/ }),
+/* 388 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(10);
+
+var _axios = __webpack_require__(18);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// [TO DO: Might be able to refactor with YelpGallery to reuse more code]
+var YelpSearchCh = function (_React$Component) {
+  _inherits(YelpSearchCh, _React$Component);
+
+  function YelpSearchCh(props) {
+    _classCallCheck(this, YelpSearchCh);
+
+    var _this = _possibleConstructorReturn(this, (YelpSearchCh.__proto__ || Object.getPrototypeOf(YelpSearchCh)).call(this, props));
+
+    _this.state = {
+      yelpInfo: {},
+      yelpResults: {}
+    };
+    _this.updateInputs = _this.updateInputs.bind(_this);
+    _this.fetchYelpInfo = _this.fetchYelpInfo.bind(_this);
+    return _this;
+  }
+
+  _createClass(YelpSearchCh, [{
+    key: 'fetchYelpInfo',
+    value: function fetchYelpInfo(input, e) {
+      var _this2 = this;
+
+      e.preventDefault();
+      _axios2.default.get('/yelp', {
+        params: {
+          term: input.term,
+          location: input.location,
+          sort_by: "best_match",
+          numResults: 3
+        }
+      }).then(function (response) {
+        var yelpResults = _this2.state.yelpResults;
+        yelpResults['entries'] = response.data.resultArray;
+        _this2.setState({ yelpResults: yelpResults });
+      }).catch(function (err) {
+        console.error("Error", err);
+      });
+    }
+  }, {
+    key: 'updateInputs',
+    value: function updateInputs(e) {
+      var yelpInfo = this.state.yelpInfo;
+      var name = e.target.name;
+      var value = e.target.value;
+
+      yelpInfo[name] = value;
+      this.setState({ yelpInfo: yelpInfo });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var yelpResults = this.state.yelpResults.entries;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'yelpContainer' },
+        _react2.default.createElement(
+          'div',
+          { className: 'yelpContents' },
+          _react2.default.createElement(
+            'h4',
+            null,
+            '\u5F9EYelp \u627E\u5C0B\u6D3B\u52D5\u7684\u60F3\u6CD5'
+          ),
+          _react2.default.createElement(
+            'form',
+            { id: 'yelpForm', onSubmit: this.fetchYelpInfo.bind(this, this.state.yelpInfo) },
+            _react2.default.createElement(
+              'div',
+              { className: 'form_element' },
+              _react2.default.createElement('input', { name: 'term', type: 'text', placeholder: '\u6D3B\u52D5', onChange: this.updateInputs })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'form_element' },
+              _react2.default.createElement('input', { name: 'location', type: 'text', placeholder: '\u5730\u9EDE', onChange: this.updateInputs })
+            ),
+            _react2.default.createElement(
+              'button',
+              { id: 'mainCTA' },
+              '\u641C\u5C0B'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'yelpResults' },
+            yelpResults ? yelpResults.map(function (entry, index) {
+              return _react2.default.createElement(
+                'div',
+                { key: index, id: 'yelpResultItem' },
+                _react2.default.createElement(
+                  'div',
+                  { onClick: function onClick(e) {
+                      return _this3.props.insertYelpActivityToForm(entry.name, entry.url);
+                    }, id: 'pic_container' },
+                  _react2.default.createElement('img', { src: entry.image_url })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  entry.name
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { id: 'rating' },
+                  '\u8A55\u8A9E: ',
+                  entry.rating,
+                  '/5'
+                )
+              );
+            }) : null
+          )
+        )
+      );
+    }
+  }]);
+
+  return YelpSearchCh;
+}(_react2.default.Component);
+
+exports.default = YelpSearchCh;
+
+/***/ }),
+/* 389 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(10);
+
+var _axios = __webpack_require__(18);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _HeaderCh = __webpack_require__(387);
+
+var _HeaderCh2 = _interopRequireDefault(_HeaderCh);
+
+var _InviteFriendsCh = __webpack_require__(391);
+
+var _InviteFriendsCh2 = _interopRequireDefault(_InviteFriendsCh);
+
+var _YelpSearchCh = __webpack_require__(388);
+
+var _YelpSearchCh2 = _interopRequireDefault(_YelpSearchCh);
+
+var _reactDatepicker = __webpack_require__(195);
+
+var _reactDatepicker2 = _interopRequireDefault(_reactDatepicker);
+
+var _moment = __webpack_require__(0);
+
+var _moment2 = _interopRequireDefault(_moment);
+
+var _Calendar = __webpack_require__(241);
+
+var _Calendar2 = _interopRequireDefault(_Calendar);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// import '../../../node_modules/react-datepicker/dist/react-datepicker.css';
+
+
+var CreateTripCh = function (_React$Component) {
+  _inherits(CreateTripCh, _React$Component);
+
+  function CreateTripCh(props) {
+    _classCallCheck(this, CreateTripCh);
+
+    var _this = _possibleConstructorReturn(this, (CreateTripCh.__proto__ || Object.getPrototypeOf(CreateTripCh)).call(this, props));
+
+    _this.state = {
+      dates: [],
+      date: '',
+      activities: [],
+      activityName: '',
+      activityDescription: '',
+      activityCost: '',
+      tripName: '',
+      destination: '',
+      estCost: '',
+      votes: 0,
+      isInviteFriendModalOpen: false,
+      showReqFields: false,
+      datePlaceholder: '',
+      activityPlaceholder: '',
+      descriptionPlaceholder: '',
+      costPlaceholder: ''
+    };
+    _this.onActivityClick = _this.onActivityClick.bind(_this);
+    _this.onDateSubmission = _this.onDateSubmission.bind(_this);
+    _this.onAddTripClick = _this.onAddTripClick.bind(_this);
+    _this.toggleModal = _this.toggleModal.bind(_this);
+    _this.handleChange = _this.handleChange.bind(_this);
+    _this.insertYelpActivityToForm = _this.insertYelpActivityToForm.bind(_this);
+    _this.setCalendarPlaceholder = _this.setCalendarPlaceholder.bind(_this);
+
+    return _this;
+  }
+
+  _createClass(CreateTripCh, [{
+    key: 'setCalendarPlaceholder',
+    value: function setCalendarPlaceholder(dateString) {
+      this.setState({ datePlaceholder: dateString });
+    }
+    //Function to be passed to yelp search so that clicking one of the items from the search will autofill the activity form with said activity and description/
+    //link with the url
+
+  }, {
+    key: 'insertYelpActivityToForm',
+    value: function insertYelpActivityToForm(activity, url) {
+      this.setState({ activityPlaceholder: activity, descriptionPlaceholder: url, activityName: activity, activityDescription: url });
+    }
+    // Toggle InviteFriends modal
+
+  }, {
+    key: 'toggleModal',
+    value: function toggleModal(e) {
+      e.preventDefault();
+      if (!this.state.tripName) {
+        this.setState({
+          showReqFields: true
+        });
+      } else {
+        this.setState({
+          isInviteFriendModalOpen: !this.state.isInviteFriendModalOpen
+        });
+      }
+    }
+    // Add new activity to activities array on '+' click (doesn't post directly to DB)
+
+  }, {
+    key: 'onActivityClick',
+    value: function onActivityClick(e) {
+      e.preventDefault();
+      var listOfActivities = this.state.activities;
+      var activityObject = {
+        activityName: this.state.activityName,
+        activityDescription: this.state.activityDescription,
+        activityCost: this.state.activityCost
+      };
+      listOfActivities.push(activityObject);
+      this.setState({ activities: listOfActivities, activityPlaceholder: '', descriptionPlaceholder: '', costPlaceholder: '' });
+    }
+    // Add new date to dates array on '+' click (doesn't post directly to DB)
+
+  }, {
+    key: 'onDateSubmission',
+    value: function onDateSubmission(e) {
+      e.preventDefault();
+      var listOfDates = this.state.dates;
+      listOfDates.push(this.state.datePlaceholder);
+      this.setState({ dates: listOfDates, datePlaceholder: '' });
+    }
+    // Create new trip
+
+  }, {
+    key: 'onAddTripClick',
+    value: function onAddTripClick(e, friend) {
+      var _this2 = this;
+
+      e.preventDefault();
+      _axios2.default.post('/tripInfo', { loggedInUser: this.props.loggedInUser, dates: this.state.dates, activities: this.state.activities, destination: this.state.destination, tripName: this.state.tripName, estCost: this.state.estCost, friend: friend, votes: this.state.votes }).then(function (response) {
+        console.log('Successfully posted trip to DB');
+        _this2.props.history.push('/profile');
+      }).catch(function (error) {
+        console.log('Error posting trip to DB', error);
+      });
+    }
+  }, {
+    key: 'handleChange',
+    value: function handleChange(date) {
+      this.setState({
+        date: date,
+        datePlaceholder: date
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this,
+          _React$createElement;
+
+      return _react2.default.createElement(
+        'div',
+        { id: 'createTrip' },
+        _react2.default.createElement(_HeaderCh2.default, { loggedInUser: this.props.loggedInUser }),
+        _react2.default.createElement(
+          'div',
+          { className: 'container' },
+          _react2.default.createElement(
+            'div',
+            { className: 'content narrow' },
+            _react2.default.createElement(
+              'form',
+              null,
+              _react2.default.createElement(
+                'h2',
+                { id: 'pageheader' },
+                '\u958B\u5275\u4E00\u500B\u884C\u7A0B'
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'column1' },
+                _react2.default.createElement(
+                  'label',
+                  null,
+                  '\u65C5\u884C\u540D\u7A31'
+                ),
+                _react2.default.createElement('input', { name: 'tripName', type: 'text', onChange: function onChange(e) {
+                    return _this3.setState({ tripName: e.target.value });
+                  } }),
+                _react2.default.createElement(
+                  'label',
+                  null,
+                  '\u5730\u9EDE'
+                ),
+                _react2.default.createElement('input', { name: 'tripName', type: 'text', onChange: function onChange(e) {
+                    return _this3.setState({ destination: e.target.value });
+                  } }),
+                _react2.default.createElement(
+                  'label',
+                  null,
+                  '\u6642\u9593'
+                ),
+                this.state.dates.map(function (date, index) {
+                  return _react2.default.createElement(
+                    'div',
+                    { key: index },
+                    _react2.default.createElement(
+                      'li',
+                      { className: 'dateItem' },
+                      date
+                    )
+                  );
+                }),
+                _react2.default.createElement('input', { name: 'dateRange', placeholder: 'mm/dd/yyyy - mm/dd/yyyy', value: this.state.datePlaceholder, type: 'text', onChange: function onChange(e) {
+                    return _this3.setState({ datePlaceholder: e.target.value });
+                  } }),
+                _react2.default.createElement(_Calendar2.default, { callbackParent: this.setCalendarPlaceholder }),
+                _react2.default.createElement(
+                  'button',
+                  { id: 'secondary', onClick: this.onDateSubmission },
+                  '+'
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'column2' },
+                _react2.default.createElement(
+                  'label',
+                  null,
+                  'Estimated Cost'
+                ),
+                _react2.default.createElement('input', { name: 'estimatedCost', type: 'text', placeholder: '$', onChange: function onChange(e) {
+                    return _this3.setState({ estCost: e.target.value });
+                  } }),
+                this.state.activities.map(function (activity, index) {
+                  return _react2.default.createElement(
+                    'div',
+                    { key: index, id: 'activityList' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'activityGroup' },
+                      _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          '\u6D3B\u52D5:'
+                        ),
+                        ' ',
+                        activity.activityName,
+                        ' '
+                      ),
+                      _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          '\u6D3B\u52D5\u5167\u5BB9:'
+                        ),
+                        ' ',
+                        activity.activityDescription,
+                        ' '
+                      ),
+                      _react2.default.createElement(
+                        'li',
+                        null,
+                        _react2.default.createElement(
+                          'span',
+                          null,
+                          '\u50F9\u9322:'
+                        ),
+                        ' $',
+                        activity.activityCost,
+                        ' '
+                      )
+                    )
+                  );
+                }),
+                _react2.default.createElement(
+                  'label',
+                  null,
+                  '\u6D3B\u52D5\u610F\u898B'
+                ),
+                _react2.default.createElement('input', { name: 'activity', type: 'text', placeholder: '\u6D3B\u52D5', value: this.state.activityPlaceholder, onChange: function onChange(e) {
+                    return _this3.setState({ activityName: e.target.value, activityPlaceholder: e.target.value });
+                  } }),
+                _react2.default.createElement('input', { name: 'activity', type: 'text', placeholder: '\u6D3B\u52D5\u5167\u5BB9', value: this.state.descriptionPlaceholder, onChange: function onChange(e) {
+                    return _this3.setState({ activityDescription: e.target.value, descriptionPlaceholder: e.target.value });
+                  } }),
+                _react2.default.createElement('input', { name: 'activity', type: 'text', placeholder: '\u50F9\u9322', value: this.state.costPlaceholder, onChange: function onChange(e) {
+                    return _this3.setState({ activityCost: e.target.value, costPlaceholder: e.target.value });
+                  } }),
+                _react2.default.createElement(
+                  'button',
+                  { id: 'secondary', onClick: this.onActivityClick },
+                  '+'
+                )
+              ),
+              _react2.default.createElement(
+                'button',
+                { id: 'primary', onClick: this.toggleModal },
+                '\u4E0B\u4E00\u9801'
+              )
+            ),
+            this.state.showReqFields ? _react2.default.createElement(
+              'p',
+              { className: 'errorMsg' },
+              '\u8ACB\u8F38\u5165\u65C5\u884C\u540D\u7A31'
+            ) : null
+          )
+        ),
+        _react2.default.createElement(
+          InviteFriends,
+          (_React$createElement = { show: this.state.isInviteFriendModalOpen, onClose: this.toggleModal, onAddTripClick: this.onAddTripClick }, _defineProperty(_React$createElement, 'onClose', this.toggleModal), _defineProperty(_React$createElement, 'updateCurrentTrip', this.props.updateCurrentTrip), _React$createElement),
+          _react2.default.createElement(
+            'h3',
+            null,
+            '\u9080\u8ACB\u4F60\u7684\u670B\u53CB'
+          )
+        ),
+        _react2.default.createElement(YelpSearch, { insertYelpActivityToForm: this.insertYelpActivityToForm })
+      );
+    }
+  }]);
+
+  return CreateTripCh;
+}(_react2.default.Component);
+
+exports.default = CreateTripCh;
+
+/***/ }),
+/* 390 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(10);
+
+var _axios = __webpack_require__(18);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _HeaderCh = __webpack_require__(387);
+
+var _HeaderCh2 = _interopRequireDefault(_HeaderCh);
+
+var _YelpSearchCh = __webpack_require__(388);
+
+var _YelpSearchCh2 = _interopRequireDefault(_YelpSearchCh);
+
+var _YelpGalleryCh = __webpack_require__(395);
+
+var _YelpGalleryCh2 = _interopRequireDefault(_YelpGalleryCh);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var HomeCh = function (_React$Component) {
+  _inherits(HomeCh, _React$Component);
+
+  function HomeCh(props) {
+    _classCallCheck(this, HomeCh);
+
+    var _this = _possibleConstructorReturn(this, (HomeCh.__proto__ || Object.getPrototypeOf(HomeCh)).call(this, props));
+
+    _axios2.default.post('/login', null).then(function (response) {
+
+      if (response.data && typeof response.data !== 'boolean') {
+        _this.props.checkUser(response.data);
+        _this.props.history.push('/profile');
+      }
+    }).catch(function (err) {
+      console.error("Error logging in", err);
+    });
+    return _this;
+  }
+
+  _createClass(HomeCh, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { id: 'main' },
+        _react2.default.createElement(_HeaderCh2.default, { loggedInUser: this.props.loggedInUser }),
+        _react2.default.createElement(
+          'div',
+          { id: 'banner' },
+          _react2.default.createElement(
+            'div',
+            { id: 'tagline' },
+            '\u548C\u4F60\u7684\u968A\u53CB\u4E00\u8D77\u63A2\u7D22\u4E16\u754C'
+          ),
+          _react2.default.createElement(
+            _reactRouterDom.Link,
+            { to: '/createTrip' },
+            _react2.default.createElement(
+              'button',
+              { id: 'mainCTA' },
+              '\u958B\u5275\u4E00\u500B\u884C\u7A0B'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { id: 'galleryHeader' },
+          _react2.default.createElement(
+            'h2',
+            null,
+            '\u71B1\u9580\u7684\u76EE\u7684\u5730'
+          )
+        ),
+        _react2.default.createElement(_YelpGalleryCh2.default, null)
+      );
+    }
+  }]);
+
+  return HomeCh;
+}(_react2.default.Component);
+
+exports.default = HomeCh;
+
+/***/ }),
+/* 391 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(10);
+
+var _axios = __webpack_require__(18);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var InviteFriendsCh = function (_React$Component) {
+  _inherits(InviteFriendsCh, _React$Component);
+
+  function InviteFriendsCh(props) {
+    _classCallCheck(this, InviteFriendsCh);
+
+    var _this = _possibleConstructorReturn(this, (InviteFriendsCh.__proto__ || Object.getPrototypeOf(InviteFriendsCh)).call(this, props));
+
+    _this.state = {
+      friend: '',
+      friends: [],
+      users: [],
+      userNotFound: false
+    };
+    _this.addFriendClick = _this.addFriendClick.bind(_this);
+    _this.getUsers = _this.getUsers.bind(_this);
+    return _this;
+  }
+
+  _createClass(InviteFriendsCh, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.getUsers();
+    }
+
+    // Request list of all usernames [TO DO: Refactor to check if username exists on serverside]
+
+  }, {
+    key: 'getUsers',
+    value: function getUsers() {
+      var _this2 = this;
+
+      _axios2.default.get('/users').then(function (result) {
+        _this2.setState({ users: result.data });
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+
+    // Add invited friend to friends array on '+' click (doesn't post directly to DB) [TO DO: Refactor to check if username exists on serverside]
+
+  }, {
+    key: 'addFriendClick',
+    value: function addFriendClick() {
+      var count = 0;
+      for (var i = 0; i < this.state.users.length; i++) {
+        if (this.state.users[i].username === this.state.friend) {
+          count++;
+        }
+      }
+      if (count === 0) {
+        this.setState({ userNotFound: true });
+      } else {
+        var listOfFriends = this.state.friends;
+        listOfFriends.push(this.state.friend);
+        this.setState({ friends: listOfFriends });
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      if (!this.props.show) {
+        return null;
+      }
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'backdrop' },
+        _react2.default.createElement(
+          'div',
+          { id: 'modal' },
+          this.props.children,
+          _react2.default.createElement(
+            'ul',
+            { id: 'friendList' },
+            this.state.friends.map(function (friend, index) {
+              return _react2.default.createElement(
+                'li',
+                { key: index },
+                friend
+              );
+            })
+          ),
+          _react2.default.createElement('input', { name: 'friendName', placeholder: '\u670B\u53CB\u5E33\u865F', type: 'text', onChange: function onChange(e) {
+              return _this3.setState({ friend: e.target.value });
+            } }),
+          _react2.default.createElement(
+            'button',
+            { id: 'secondary', onClick: this.addFriendClick },
+            '+'
+          ),
+          this.state.userNotFound ? _react2.default.createElement(
+            'div',
+            { className: 'errorMsg' },
+            '\u5E33\u865F\u4E0D\u5B58\u5728'
+          ) : null,
+          _react2.default.createElement(
+            'button',
+            { id: 'modalButton', onClick: function onClick(e) {
+                _this3.props.onAddTripClick(e, _this3.state.friends);
+              } },
+            '\u63D0\u4EA4'
+          ),
+          _react2.default.createElement(
+            'a',
+            { href: '/', onClick: function onClick(e) {
+                return _this3.props.onClose(e);
+              } },
+            '\u53D6\u6D88'
+          )
+        )
+      );
+    }
+  }]);
+
+  return InviteFriendsCh;
+}(_react2.default.Component);
+
+exports.default = InviteFriendsCh;
+
+/***/ }),
+/* 392 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(10);
+
+var _axios = __webpack_require__(18);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _HeaderCh = __webpack_require__(387);
+
+var _HeaderCh2 = _interopRequireDefault(_HeaderCh);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Login = function (_React$Component) {
+  _inherits(Login, _React$Component);
+
+  function Login(props) {
+    _classCallCheck(this, Login);
+
+    var _this = _possibleConstructorReturn(this, (Login.__proto__ || Object.getPrototypeOf(Login)).call(this, props));
+
+    _this.state = {
+      userInfo: {},
+      showErrorMsg: false
+    };
+    _this.submitLogin = _this.submitLogin.bind(_this);
+    _this.updateInputs = _this.updateInputs.bind(_this);
+    _this.componentDidMount = _this.componentDidMount.bind(_this);
+    _this.testAPI = _this.testAPI.bind(_this);
+    _this.statusChangeCallback = _this.statusChangeCallback.bind(_this);
+    _this.checkLoginState = _this.checkLoginState.bind(_this);
+    _this.handleClick = _this.handleClick.bind(_this);
+    return _this;
+  }
+
+  _createClass(Login, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: '106404783249150',
+          cookie: true, // enable cookies to allow the server to access
+          // the session
+          xfbml: true, // parse social plugins on this page
+          version: 'v2.1' // use version 2.1
+        });
+
+        // These three cases are handled in the callback function.
+        FB.getLoginStatus(function (response) {
+          this.statusChangeCallback(response);
+        }.bind(this));
+      }.bind(this);
+
+      // Load the SDK asynchronously
+      (function (d, s, id) {
+        var js,
+            fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, 'script', 'facebook-jssdk');
+    }
+  }, {
+    key: 'testAPI',
+    value: function testAPI() {
+      console.log('Welcome!  Fetching your information.... ');
+      FB.api('/me', function (response) {
+        console.log('Successful login for: ' + response.name);
+        // document.getElementById('status').innerHTML =
+        //   'Thanks for logging in, ' + response.name + '!';
+      });
+    }
+    // This is called with the results from from FB.getLoginStatus().
+
+  }, {
+    key: 'statusChangeCallback',
+    value: function statusChangeCallback(response) {
+      console.log('statusChangeCallback');
+      console.log(response);
+
+      if (response.status === 'connected') {
+        // Logged into your app and Facebook.
+        this.testAPI();
+      } else if (response.status === 'not_authorized') {
+        // The person is logged into Facebook, but not your app.
+        // document.getElementById('status').innerHTML = 'Please log ' +
+        //   'into this app.';
+      } else {
+          // The person is not logged into Facebook, so we're not sure if
+          // they are logged into this app or not.
+          // document.getElementById('status').innerHTML = 'Please log ' +
+          // 'into Facebook.';
+        }
+    }
+  }, {
+    key: 'checkLoginState',
+    value: function checkLoginState() {
+      FB.getLoginStatus(function (response) {
+        var _this2 = this;
+
+        console.log('heres response! ', response);
+        this.statusChangeCallback(response);
+        if (response.status === 'connected') {
+          FB.api('/me', function (response) {
+            console.log('connected, here we go...', response);
+            var user = { username: response.name,
+              password: '1234' };
+            var userInfo = _this2.state.userInfo;
+            userInfo.username = response.name;
+            _this2.setState({ userInfo: userInfo });
+            _this2.submitLogin(user);
+            //  (e)=>{this.submitSignup(user, e)};
+          });
+        }
+        console.log('RES STATUS: ', response.status);
+      }.bind(this));
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick() {
+      console.log('clicky');
+      FB.login(this.checkLoginState());
+    }
+  }, {
+    key: 'submitLogin',
+    value: function submitLogin(login, e) {
+      var _this3 = this;
+
+      if (e) {
+        e.preventDefault();
+      }
+
+      _axios2.default.post('/login', { username: login.username, password: login.password }).then(function (response) {
+        //if username and password combo matches
+        if (response.data) {
+          console.log('userdata', _this3.state.userInfo);
+          _this3.props.checkUser(_this3.state.userInfo.username);
+          _this3.props.history.push('/profile');
+        } else {
+          _this3.setState({
+            showErrorMsg: true
+          });
+          console.log("Invalid username/password combination.");
+        }
+      }).catch(function (err) {
+        console.error("Error logging in", err);
+      });
+    }
+  }, {
+    key: 'updateInputs',
+    value: function updateInputs(e) {
+      var userInfo = this.state.userInfo;
+      var name = e.target.name;
+      var value = e.target.value;
+
+      userInfo[name] = value;
+      this.setState({ userInfo: userInfo });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      return _react2.default.createElement(
+        'div',
+        { id: 'login' },
+        _react2.default.createElement(_HeaderCh2.default, null),
+        _react2.default.createElement(
+          'div',
+          { className: 'container' },
+          _react2.default.createElement(
+            'div',
+            { className: 'content wide' },
+            _react2.default.createElement(
+              'div',
+              { id: 'form_container' },
+              _react2.default.createElement(
+                'h2',
+                null,
+                '\u767B\u5165'
+              ),
+              _react2.default.createElement(
+                'form',
+                { onSubmit: function onSubmit(e) {
+                    return _this4.submitLogin(_this4.state.userInfo, e);
+                  } },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form_element' },
+                  _react2.default.createElement(
+                    'label',
+                    null,
+                    '\u5E33\u865F'
+                  ),
+                  _react2.default.createElement('input', { name: 'username', type: 'text', onChange: this.updateInputs }),
+                  _react2.default.createElement('br', null),
+                  _react2.default.createElement('br', null),
+                  _react2.default.createElement('br', null)
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form_element' },
+                  _react2.default.createElement(
+                    'label',
+                    null,
+                    '\u5BC6\u78BC'
+                  ),
+                  _react2.default.createElement('input', { name: 'password', type: 'password', onChange: this.updateInputs })
+                ),
+                this.state.showErrorMsg ? _react2.default.createElement(
+                  'div',
+                  { className: 'errorMsg' },
+                  'Invalid username/password combination.'
+                ) : null,
+                _react2.default.createElement(
+                  'button',
+                  null,
+                  '\u767B\u5165'
+                ),
+                _react2.default.createElement(
+                  'a',
+                  { href: '#', onClick: this.handleClick },
+                  _react2.default.createElement('img', { src: './fbLogo.png', className: 'fbLogo' })
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return Login;
+}(_react2.default.Component);
+
+exports.default = Login;
+
+/***/ }),
+/* 393 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(10);
+
+var _axios = __webpack_require__(18);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _HeaderCh = __webpack_require__(387);
+
+var _HeaderCh2 = _interopRequireDefault(_HeaderCh);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ProfileCh = function (_React$Component) {
+  _inherits(ProfileCh, _React$Component);
+
+  function ProfileCh(props) {
+    _classCallCheck(this, ProfileCh);
+
+    var _this = _possibleConstructorReturn(this, (ProfileCh.__proto__ || Object.getPrototypeOf(ProfileCh)).call(this, props));
+
+    _this.state = {
+      userTrip: {}
+    };
+    _this.accessTrip = _this.accessTrip.bind(_this);
+    _this.getProfile = _this.getProfile.bind(_this);
+    _this.capitalize = _this.capitalize.bind(_this);
+    return _this;
+  }
+
+  _createClass(ProfileCh, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.getProfile();
+    }
+  }, {
+    key: 'accessTrip',
+    value: function accessTrip(trip) {
+      this.props.updateCurrentTrip(trip);
+      this.props.history.push('/contributeTrip');
+    }
+  }, {
+    key: 'getProfile',
+    value: function getProfile() {
+      var _this2 = this;
+
+      _axios2.default.get('/profile', {
+        params: {
+          loggedInUser: this.props.loggedInUser
+        } }).then(function (result) {
+        var userTrip = _this2.state.userTrip;
+        userTrip['tripName'] = result.data.trips;
+        _this2.setState({ userTrip: userTrip });
+      }).catch(function (error) {
+        console.error(error);
+      });
+    }
+
+    // Helper function for formatting
+
+  }, {
+    key: 'capitalize',
+    value: function capitalize(word) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var listOfTrips = this.state.userTrip.tripName;
+      var user = this.props.loggedInUser;
+
+      return _react2.default.createElement(
+        'div',
+        { id: 'profile' },
+        _react2.default.createElement(_HeaderCh2.default, { loggedInUser: this.props.loggedInUser }),
+        _react2.default.createElement(
+          'div',
+          { className: 'container' },
+          _react2.default.createElement(
+            'div',
+            { className: 'content wide' },
+            _react2.default.createElement(
+              'h2',
+              null,
+              '\u6B61\u8FCE ',
+              user ? this.capitalize(user) : null,
+              '!'
+            ),
+            _react2.default.createElement(
+              'div',
+              { id: 'yourTrips' },
+              _react2.default.createElement(
+                'h3',
+                null,
+                '\u4F60\u7684\u884C\u7A0B'
+              )
+            ),
+            listOfTrips ? listOfTrips.map(function (trip, index) {
+              return _react2.default.createElement(
+                'div',
+                { onClick: function onClick() {
+                    return _this3.accessTrip(trip);
+                  }, id: 'tripCard', key: index },
+                trip
+              );
+            }) : _react2.default.createElement(
+              'div',
+              { id: 'emptyTrips' },
+              '\u4F60\u6C92\u6709\u884C\u7A0B'
+            ),
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: '/createTrip' },
+              _react2.default.createElement(
+                'button',
+                { id: 'mainCTA' },
+                '\u958B\u5275\u4E00\u500B\u884C\u7A0B'
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return ProfileCh;
+}(_react2.default.Component);
+
+exports.default = ProfileCh;
+
+/***/ }),
+/* 394 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(10);
+
+var _axios = __webpack_require__(18);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _HeaderCh = __webpack_require__(387);
+
+var _HeaderCh2 = _interopRequireDefault(_HeaderCh);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SignupCh = function (_React$Component) {
+  _inherits(SignupCh, _React$Component);
+
+  function SignupCh(props) {
+    _classCallCheck(this, SignupCh);
+
+    var _this = _possibleConstructorReturn(this, (SignupCh.__proto__ || Object.getPrototypeOf(SignupCh)).call(this, props));
+
+    _this.state = {
+      userInfo: {}
+    };
+
+    _this.submitSignup = _this.submitSignup.bind(_this);
+    _this.updateInputs = _this.updateInputs.bind(_this);
+    _this.componentDidMount = _this.componentDidMount.bind(_this);
+    _this.testAPI = _this.testAPI.bind(_this);
+    _this.statusChangeCallback = _this.statusChangeCallback.bind(_this);
+    _this.checkLoginState = _this.checkLoginState.bind(_this);
+    _this.handleClick = _this.handleClick.bind(_this);
+
+    return _this;
+  }
+
+  _createClass(SignupCh, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: '106404783249150',
+          cookie: true, // enable cookies to allow the server to access
+          // the session
+          xfbml: true, // parse social plugins on this page
+          version: 'v2.1' // use version 2.1
+        });
+
+        // Now that we've initialized the JavaScript SDK, we call
+        // FB.getLoginStatus().  This function gets the state of the
+        // person visiting this page and can return one of three states to
+        // the callback you provide.  They can be:
+        //
+        // 1. Logged into your app ('connected')
+        // 2. Logged into Facebook, but not your app ('not_authorized')
+        // 3. Not logged into Facebook and can't tell if they are logged into
+        //    your app or not.
+        //
+        // These three cases are handled in the callback function.
+        FB.getLoginStatus(function (response) {
+          this.statusChangeCallback(response);
+        }.bind(this));
+      }.bind(this);
+
+      // Load the SDK asynchronously
+      (function (d, s, id) {
+        var js,
+            fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      })(document, 'script', 'facebook-jssdk');
+    }
+
+    // Here we run a very simple test of the Graph API after login is
+    // successful.  See statusChangeCallback() for when this call is made.
+
+  }, {
+    key: 'testAPI',
+    value: function testAPI() {
+      console.log('Welcome!  Fetching your information.... ');
+      FB.api('/me', function (response) {
+        console.log('Successful login for: ' + response.name);
+        //document.getElementById('status').innerHTML =
+        //  'Thanks for logging in, ' + response.name + '!';
+      });
+    }
+
+    // This is called with the results from from FB.getLoginStatus().
+
+  }, {
+    key: 'statusChangeCallback',
+    value: function statusChangeCallback(response) {
+      console.log('statusChangeCallback');
+      console.log(response);
+      // The response object is returned with a status field that lets the
+      // app know the current login status of the person.
+      // Full docs on the response object can be found in the documentation
+      // for FB.getLoginStatus().
+      if (response.status === 'connected') {
+        // Logged into your app and Facebook.
+        this.testAPI();
+      } else if (response.status === 'not_authorized') {
+        // The person is logged into Facebook, but not your app.
+        document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
+      } else {
+        // The person is not logged into Facebook, so we're not sure if
+        // they are logged into this app or not.
+        document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.';
+      }
+    }
+
+    // This function is called when someone finishes with the Login
+    // Button.  See the onlogin handler attached to it in the sample
+    // code below.
+
+  }, {
+    key: 'checkLoginState',
+    value: function checkLoginState() {
+      FB.getLoginStatus(function (response) {
+        var _this2 = this;
+
+        console.log('heres response! ', response);
+        this.statusChangeCallback(response);
+        if (response.status === 'connected') {
+          FB.api('/me', function (response) {
+            console.log('connected, here we go...', response);
+            var user = { username: response.name,
+              password: '1234' };
+            var userInfo = _this2.state.userInfo;
+            userInfo.username = response.name;
+            _this2.setState({ userInfo: userInfo });
+            _this2.submitSignup(user);
+            //  (e)=>{this.submitSignup(user, e)};
+          });
+        }
+        console.log('RES STATUS: ', response.status);
+      }.bind(this));
+    }
+  }, {
+    key: 'handleClick',
+    value: function handleClick() {
+
+      FB.login(this.checkLoginState());
+    }
+  }, {
+    key: 'submitSignup',
+    value: function submitSignup(signup, e) {
+      var _this3 = this;
+
+      console.log('in submit: ', signup);
+      if (e) {
+        e.preventDefault();
+      }
+      _axios2.default.post('/signup', { username: signup.username, password: signup.password }).then(function (_ref) {
+        var response = _ref.response;
+
+        //this line will take you to /profile
+        console.log('state username: ', _this3.state.userInfo);
+        console.log('in post, username: ', _this3.state.userInfo.username);
+        _this3.props.checkUser(_this3.state.userInfo.username);
+        _this3.props.history.push('/profile');
+      }).catch(function (err) {
+        console.error("error in post entries", err);
+      });
+    }
+  }, {
+    key: 'updateInputs',
+    value: function updateInputs(e) {
+      var userInfo = this.state.userInfo;
+      var name = e.target.name;
+      var value = e.target.value;
+
+      userInfo[name] = value;
+      this.setState({ userInfo: userInfo });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      return _react2.default.createElement(
+        'div',
+        { id: 'signup' },
+        _react2.default.createElement(_HeaderCh2.default, null),
+        _react2.default.createElement(
+          'div',
+          { className: 'container' },
+          _react2.default.createElement(
+            'div',
+            { className: 'content wide' },
+            _react2.default.createElement(
+              'div',
+              { id: 'form_container' },
+              _react2.default.createElement(
+                'h2',
+                null,
+                '\u8A3B\u518A'
+              ),
+              _react2.default.createElement(
+                'form',
+                { onSubmit: function onSubmit(e) {
+                    return _this4.submitSignup(_this4.state.userInfo, e);
+                  } },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form_element' },
+                  _react2.default.createElement(
+                    'label',
+                    null,
+                    '\u5E33\u865F'
+                  ),
+                  _react2.default.createElement('input', { name: 'username', type: 'text', onChange: this.updateInputs }),
+                  _react2.default.createElement('br', null),
+                  _react2.default.createElement('br', null),
+                  _react2.default.createElement('br', null)
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form_element' },
+                  _react2.default.createElement(
+                    'label',
+                    null,
+                    '\u5BC6\u78BC'
+                  ),
+                  _react2.default.createElement('input', { name: 'password', type: 'password', onChange: this.updateInputs })
+                ),
+                _react2.default.createElement(
+                  'a',
+                  { href: '#', onClick: this.handleClick },
+                  _react2.default.createElement('img', { src: './fbLogo.png', className: 'fbLogo' })
+                ),
+                _react2.default.createElement(
+                  'button',
+                  null,
+                  '\u767B\u5165'
+                )
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return SignupCh;
+}(_react2.default.Component);
+
+exports.default = SignupCh;
+
+/***/ }),
+/* 395 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(10);
+
+var _axios = __webpack_require__(18);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// [TO DO: Might be able to refactor with YelpSearch to reuse more code]
+var YelpGalleryCh = function (_React$Component) {
+  _inherits(YelpGalleryCh, _React$Component);
+
+  function YelpGalleryCh(props) {
+    _classCallCheck(this, YelpGalleryCh);
+
+    var _this = _possibleConstructorReturn(this, (YelpGalleryCh.__proto__ || Object.getPrototypeOf(YelpGalleryCh)).call(this, props));
+
+    _this.state = {
+      yelpInfo: {},
+      yelpResults: {}
+    };
+    _this.fetchYelpInfo = _this.fetchYelpInfo.bind(_this);
+    return _this;
+  }
+
+  _createClass(YelpGalleryCh, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      this.fetchYelpInfo();
+    }
+  }, {
+    key: 'fetchYelpInfo',
+    value: function fetchYelpInfo() {
+      var _this2 = this;
+
+      _axios2.default.get('/yelp', {
+        params: {
+          term: "hikes",
+          location: "california",
+          sort_by: "rating",
+          numResults: 6
+        }
+      }).then(function (response) {
+        var yelpResults = _this2.state.yelpResults;
+        yelpResults['entries'] = response.data.resultArray;
+        _this2.setState({ yelpResults: yelpResults });
+      }).catch(function (err) {
+        console.error("Error", err);
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var yelpResults = this.state.yelpResults.entries;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'yelpContainer gallery' },
+        _react2.default.createElement(
+          'div',
+          { className: 'yelpContents' },
+          _react2.default.createElement(
+            'div',
+            { className: 'yelpResults' },
+            yelpResults ? yelpResults.map(function (entry, index) {
+              return _react2.default.createElement(
+                'div',
+                { key: index, id: 'yelpResultItem' },
+                _react2.default.createElement(
+                  'div',
+                  { id: 'pic_container' },
+                  _react2.default.createElement('img', { src: entry.image_url })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  entry.name
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { id: 'rating' },
+                  '\u8A55\u8A9E: ',
+                  entry.rating,
+                  '/5'
+                )
+              );
+            }) : null
+          )
+        )
+      );
+    }
+  }]);
+
+  return YelpGalleryCh;
+}(_react2.default.Component);
+
+exports.default = YelpGalleryCh;
 
 /***/ })
 /******/ ]);
