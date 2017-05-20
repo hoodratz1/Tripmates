@@ -36,6 +36,12 @@ class CreateTrip extends React.Component {
     this.toggleModal = this.toggleModal.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.insertYelpActivityToForm = this.insertYelpActivityToForm.bind(this);
+    this.setCalendarPlaceholder = this.setCalendarPlaceholder.bind(this);
+
+  }
+
+  setCalendarPlaceholder(dateString){
+  this.setState({ datePlaceholder: dateString })
   }
   //Function to be passed to yelp search so that clicking one of the items from the search will autofill the activity form with said activity and description/
   //link with the url
@@ -71,7 +77,7 @@ class CreateTrip extends React.Component {
   onDateSubmission (e) {
     e.preventDefault();
     var listOfDates = this.state.dates;
-    listOfDates.push(this.state.date);
+    listOfDates.push(this.state.datePlaceholder);
     this.setState({dates: listOfDates, datePlaceholder: ''});
   }
   // Create new trip
@@ -109,8 +115,8 @@ class CreateTrip extends React.Component {
               {this.state.dates.map((date,index) => {
                 return(<div key={index}><li className="dateItem">{date}</li></div>)})}
 
-              <input name="dateRange" placeholder="mm/dd/yyyy - mm/dd/yyyy" value={this.state.datePlaceholder} type ="text" onChange={e => this.setState({date: e.target.value, datePlaceholder: e.target.value})}/>
-              <Calendar />
+              <input name="dateRange" placeholder="mm/dd/yyyy - mm/dd/yyyy" value={this.state.datePlaceholder} type ="text" onChange={e => this.setState({datePlaceholder: e.target.value})}/>
+              <Calendar callbackParent = {this.setCalendarPlaceholder}/>
           <button id="secondary" onClick={this.onDateSubmission}>+</button>
             </div>
             <div className="column2">
