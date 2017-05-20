@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
-import Header from './Header-ch';
+import HeaderCh from './Header-ch';
 import InviteFriendsCh from './InviteFriends-ch';
 import YelpSearchCh from './YelpSearch-ch';
 import DatePicker from 'react-datepicker';
@@ -109,8 +109,10 @@ class CreateTripCh extends React.Component {
             <div className="column1">
               <label>旅行名稱</label>
               <input name="tripName" type="text" onChange={e => this.setState({tripName: e.target.value})}/>
+              <br/><br/><br/><br/>
               <label>地點</label>
               <input name="tripName" type="text" onChange={e => this.setState({destination: e.target.value})} />
+              <br/><br/><br/><br/>
               <label>時間</label>
               {this.state.dates.map((date,index) => {
                 return(<div key={index}><li className="dateItem">{date}</li></div>)})}
@@ -131,6 +133,7 @@ class CreateTripCh extends React.Component {
                   </div>
                 </div>
               ))}
+              <br/><br/><br/><br/>
               <label>活動意見</label>
               <input name="activity" type ="text" placeholder="活動" value={this.state.activityPlaceholder} onChange={e => this.setState({activityName: e.target.value, activityPlaceholder: e.target.value})}/>
               <input name="activity" type ="text" placeholder="活動內容" value={this.state.descriptionPlaceholder} onChange={e => this.setState({activityDescription: e.target.value, descriptionPlaceholder: e.target.value})}/>
