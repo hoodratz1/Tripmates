@@ -101,7 +101,7 @@ class CreateTripCh extends React.Component {
   render() {
     return (
       <div id="createTrip">
-        <Header loggedInUser = {this.props.loggedInUser} />
+        <HeaderCh loggedInUser = {this.props.loggedInUser} />
         <div className="container">
           <div className="content narrow">
             <form>
@@ -120,7 +120,7 @@ class CreateTripCh extends React.Component {
           <button id="secondary" onClick={this.onDateSubmission}>+</button>
             </div>
             <div className="column2">
-              <label>Estimated Cost</label>
+              <label>價錢</label>
               <input name="estimatedCost" type="text" placeholder="$" onChange={e => this.setState({estCost: e.target.value})}/>
               {this.state.activities.map ((activity,index) =>
                 (<div key={index} id='activityList'>
@@ -142,10 +142,10 @@ class CreateTripCh extends React.Component {
           {this.state.showReqFields ? (<p className="errorMsg">請輸入旅行名稱</p>) : null }
           </div>
         </div>
-        <InviteFriends show = {this.state.isInviteFriendModalOpen} onClose = {this.toggleModal} onAddTripClick = {this.onAddTripClick} onClose={this.toggleModal} updateCurrentTrip = {this.props.updateCurrentTrip} >
+        <InviteFriendsCh show = {this.state.isInviteFriendModalOpen} onClose = {this.toggleModal} onAddTripClick = {this.onAddTripClick} onClose={this.toggleModal} updateCurrentTrip = {this.props.updateCurrentTrip} >
           <h3>邀請你的朋友</h3>
-        </InviteFriends>
-        <YelpSearch insertYelpActivityToForm={this.insertYelpActivityToForm}/>
+        </InviteFriendsCh>
+        <YelpSearchCh insertYelpActivityToForm={this.insertYelpActivityToForm}/>
       </div>
     )
   }
