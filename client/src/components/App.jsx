@@ -13,6 +13,7 @@ import SignupCh from './Signup-ch';
 import LoginCh from './Login-ch';
 import ProfileCh from './Profile-ch';
 import CreateTripCh from './CreateTrip-ch';
+import ContributeTripCh from './ContributeTrip-ch';
 
 
 class App extends React.Component {
@@ -79,7 +80,7 @@ class App extends React.Component {
                   <Route path="/createTrip" render={(props) => (!this.state.loggedInUser ?
                       (<Redirect to="/login"/>) : (<CreateTripCh loggedInUser={this.state.loggedInUser} {...props} />))} />
                   <Route path="/contributeTrip" render={(props) => (!this.state.loggedInUser ?
-                    (<Redirect to="/login"/>) : (<ContributeTrip loggedInUser={this.state.loggedInUser} currentTrip={this.state.currentTrip} {...props} />))} />
+                    (<Redirect to="/login"/>) : (<ContributeTripCh loggedInUser={this.state.loggedInUser} currentTrip={this.state.currentTrip} {...props} />))} />
                 </div>
                   :
                   <div>

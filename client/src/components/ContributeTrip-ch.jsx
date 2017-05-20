@@ -6,7 +6,7 @@ import HeaderCh from './Header-ch';
 import YelpSearchCh from './YelpSearch-ch';
 
 
-class ContributeTrip extends React.Component {
+class ContributeTripCh extends React.Component {
   constructor(props) {
     super(props);
 
@@ -197,4 +197,4 @@ class ContributeTrip extends React.Component {
   }
 }
 
-export default ContributeTrip;
+export default ContributeTripCh;
