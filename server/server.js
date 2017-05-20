@@ -72,8 +72,8 @@ app.post('/login', function (req, res) {
             if(match) {
               sess.users.push({email: username, ip: req.connection.remoteAddress});
             }
-            match ? sess.email = username : null;
-            match ? sess.ip = req.connection.remoteAddress : null;
+            //get rid of this??
+            
             return res.send(match);
           })
           .catch(function (error) {
@@ -343,7 +343,7 @@ app.get('/yelp', function (req, res) {
   sess.yelpAPIAccessCount = sess.yelpAPIAccessCount + 1 || 1;
   var resultArray = [];
   var tooManyQueriesResponse = [{name: 'Too many API queries. You have been blocked', url: 'dont be steve', rating: 0, image_url: 'https://lh3.googleusercontent.com/c1GhYAOyShSA2fkrUMLRKyug1VBXZmSmUY6-Bfp_hYnBCw3vEaawn8TWlujle3cEdmi1f0H6WhBkMo-yu_qJbVWfsC7RFmYhrPuYhyz8Fq6a_JQBh3yybhYi7HlH77ENzGojDEGKXIm9UPXnB79Dj49GFcDPvIFHXm_zCf7g8N_EGS1RAZk4fPCE72Og_mPFOV3bQft_Ep3fUrma6q8wtw1yOvfK93VYVx5YzUT5NJdFF-wr9NzAh9BcHD_gbLlZynxFO9TW37qiCxA52UTp4Pcnwhb1VNZBvoNXsms2DsOQvXsIsvNosmeGP8GYcXCggNdI3WcJWhSNBRDtEsclFWgEphB9_be3JZfVWpRB45BauBd9Ca6EnAwIIl5bKVUdc0JL8Jwkl6XN4-YPyZZ-bKP42hWIwKRP6rMxGbkvUv8pXdNw6N3vKk6vem72A-SQ0oWLaZMsU6MICmcFN_VhRiXO_Oy_Ovj-DiONmqZHs95QepGx5rh-cieVmgD_LiHErXYynMdgCy4P0ACcawndUboRJlEu5lFmxj_x6hnFod4Pr5_9DobS4HTVp2ZefGjEgKn13ksU=w2880-h1652'}] 
-  if(sess.yelpAPIAccessCount === 5 ) return res.end(JSON.stringify({tooManyQueriesResponse}));
+  if(sess.yelpAPIAccessCount === 20 ) return res.end(JSON.stringify({tooManyQueriesResponse}));
   
   yelp.accessToken(yelpAPI.clientId, yelpAPI.clientSecret).then(response => {
     const client = yelp.client(response.jsonBody.access_token);
