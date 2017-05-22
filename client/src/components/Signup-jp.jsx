@@ -156,7 +156,7 @@ handleClick() {
           <div className="container">
             <div className="content wide">
               <div id ="form_container">
-                <h2>ユーザーネーム</h2>
+                <h2>会員登録</h2>
 
                 <form onSubmit={(e)=>this.submitSignup(this.state.userInfo, e)}>
                   <div className="form_element">

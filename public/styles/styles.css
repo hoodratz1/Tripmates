@@ -207,14 +207,16 @@ nav li {
   padding-top: 155px;
   color: white;
   margin-bottom: 50px;
+  text-shadow: 2px 2px 4px #000000;
 }
 
 #banner {
-  background: #E1E1E1 url('../images/cover.jpg') no-repeat center;
+  background: #E1E1E1 url('../images/cover-withmates.jpg') no-repeat center;
   display:block;
   text-align: center;
   margin: auto;
   height: 500px;
+  background-size: cover;
 }
 
 #galleryHeader {
@@ -266,7 +268,7 @@ nav li {
 }
 
 button#mainCTA {
-  font-size: 30px;
+  font-size: 20px;
 }
 
 #emptyTrips {
@@ -486,6 +488,7 @@ button.translate {
     background: transparent;
     color: black;
     border: transparent;
+    float: right;
 }
 
 

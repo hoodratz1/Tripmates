@@ -193,6 +193,8 @@ app.post('/tripInfo', function(req, res) {
 })
 
 
+
+
 // Returns existing information for a specific trip (used in ContributeTrip component)
 app.get('/tripInfo', function(req,res) {
     var query = `SELECT * FROM trips WHERE tripName = '${req.query.currentTrip}'`;
