@@ -91,9 +91,6 @@ class App extends React.Component {
       <div>
         <Router>
             <div>
-                <button className="translate" onClick={this.translateChinese}>中文</button>
-                <button className="translate" onClick={this.translateJapanese}>日本語</button>
-                <button className="translate" onClick={this.translateEnglish}>English</button>
                 { this.state.chinese ?
                   <div>
                   <Route exact path="/" render={(props) => (<HomeCh loggedInUser={this.state.loggedInUser} checkUser={this.checkUser} {...props} />)} />
@@ -129,6 +126,9 @@ class App extends React.Component {
                     (<Redirect to="/login"/>) : (<ContributeTrip loggedInUser={this.state.loggedInUser} currentTrip={this.state.currentTrip} {...props} />))} />
                 </div>
                 }
+                <button className="translate" onClick={this.translateChinese}>中文</button>
+                <button className="translate" onClick={this.translateJapanese}>日本語</button>
+                <button className="translate" onClick={this.translateEnglish}>English</button>
             </div>
         </Router>
       </div>

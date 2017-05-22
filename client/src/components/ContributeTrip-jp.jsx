@@ -142,7 +142,7 @@ class ContributeTripJp extends React.Component {
         <HeaderJp loggedInUser = {this.props.loggedInUser} />
         <div className="container">
           <div className="content narrow">
-            <h2 id="pageheader">{'  "' + this.props.currentTrip + '"'}に寄付する </h2>
+            <h2 id="pageheader">{'  "' + this.props.currentTrip + '"'}に追加する </h2>
 
             <div className="column1">
               <div className="tripItem">
